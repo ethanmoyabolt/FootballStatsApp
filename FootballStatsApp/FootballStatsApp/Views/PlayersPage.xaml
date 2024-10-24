@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FootballStatsApp.Views.PlayersPage"
+             Title="Stat Tracker">
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize"
+                    Value="17.5"/>
+            <Setter Property="HorizontalTextAlignment"
+                    Value="Center"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <Label Text="Squad" FontSize="50" HorizontalOptions="CenterAndExpand"/>
+            
+            <ListView ItemsSource="{Binding Players}">
+                <ListView.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="" Grid.Column="0" Margin="0,0,0,0" />
+
+                        <Label Text="Position" Grid.Column="1" Margin="0,0,0,0"/>
+                        <Label Text="Apps." Grid.Column="2" Margin="0,0,0,0"/>
+                        <Label Text="Goals" Grid.Column="3" Margin="0,0,0,0"/>
+                        <Label Text="Assists" Grid.Column="4" Margin="0,0,0,0"/>
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="0,0,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding PlayerName}" Grid.Column="0" Margin="0,0,0,0" HorizontalTextAlignment="Start"/>
+                                <Label Text="{Binding Position}" Grid.Column="1" Margin="0,0,0,0" VerticalTextAlignment="Center"/>
+                                <Label Text="{Binding Appearances}" Grid.Column="2" Margin="0,0,0,0" VerticalTextAlignment="Center"/>
+                                <Label Text="{Binding Goals}" Grid.Column="3" Margin="0,0,0,0" VerticalTextAlignment="Center"/>
+                                <Label Text="{Binding Assists}" Grid.Column="4" Margin="0,0,0,0" VerticalTextAlignment="Center"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+            <Button Text="Add Player" Command="{Binding NavigateAddPlayerCommand}" Margin="0,0,0,10"/>
+            <Button Text="Update Players" Command="{Binding RefreshPlayersCommand}" Margin="0,0,0,10"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

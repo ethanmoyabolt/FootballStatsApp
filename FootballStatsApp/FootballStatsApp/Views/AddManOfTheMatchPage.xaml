@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FootballStatsApp.Views.AddManOfTheMatchPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Text="Man of the Match:" FontSize="30" HorizontalOptions="Center" VerticalOptions="End"/>
+            <Entry Grid.Row="1" Text="{Binding ManOfTheMatch}"  VerticalOptions="Start"/>
+            <Button Grid.Row="2" Text="Add Match" Command="{Binding AddMatchToDatabaseCommand}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

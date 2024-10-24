@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FootballStatsApp.Views.AddPlayerPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Text="Add Player:" FontSize="30" HorizontalOptions="Center"/>
+            
+            <Label Grid.Row="1" Text="Player Name:" FontSize="30" VerticalOptions="End"/>
+            <Entry Grid.Row="2" Text="{Binding PlayerName}" VerticalOptions="Start" FontSize="30"/>
+
+            <Label Grid.Row="3" Text="Position:" FontSize="30" VerticalOptions="End"/>
+            <Picker Grid.Row="4" ItemsSource="{Binding DisplayPlayerPositions}" SelectedItem="{Binding PlayerPosition}" VerticalOptions="Start" FontSize="30"/>
+            
+            <Button Grid.Row="6" Text="Add Player" Command="{Binding AddPlayerToDatabaseCommand}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

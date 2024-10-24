@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:FootballStatsApp.ViewModels"
+             x:Class="FootballStatsApp.Views.HomePage"
+             Title="Stat Tracker">
+
+    <ContentPage.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="ForestGreen"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Matches Played" FontSize="50" HorizontalOptions="Center"/>
+            <ListView x:Name="matchesListView" ItemsSource="{Binding Matches}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="{Binding HomeTeam}"  FontSize="18"/>
+                                <Label Grid.Column="1" Text="{Binding Score}" FontSize="18" HorizontalOptions="CenterAndExpand" />
+                                <Label Grid.Column="2" Text="{Binding AwayTeam}" FontSize="18" HorizontalTextAlignment="End"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <Button Text="Add Match" Command="{Binding NavigateAddMatchCommand}" Margin="0,0,0,10"/>
+            <Button Text="Update Matches" Command="{Binding RefreshMatchesCommand}" Margin="0,0,0,10"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

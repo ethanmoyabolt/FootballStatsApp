@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FootballStatsApp.Views.AddMatchEventsPage"
+             xmlns:local="clr-namespace:FootballStatsApp.Views">
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="{Binding GoalsScored}" Grid.Column="0" FontSize="50" HorizontalTextAlignment="End"/>
+                <Label Text=" - " Grid.Column="1" FontSize="50" HorizontalTextAlignment="Center"/>
+                <Label Text="{Binding GoalsConceded}" Grid.Column="2" FontSize="50" HorizontalTextAlignment="Start"/>
+            </Grid>
+
+            <Grid HorizontalOptions="Center">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Text="Goals Scored: " FontSize="25"/>
+                <Button Grid.Column="1" Text="-" Command="{Binding DecrementGoalsScoredCommand}" WidthRequest="30"/>
+                <Label Grid.Column="2" Text="{Binding GoalsScored}" FontSize="30"/>
+                <Button Grid.Column="3" Text="+" Command="{Binding IncrementGoalsScoredCommand}" WidthRequest="30"/>
+                
+            </Grid>
+
+            <Grid HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Text="Goals Conceded: " FontSize="25"/>
+                <Button Grid.Column="1" Text="-" Command="{Binding DecrementGoalsConcededCommand}" WidthRequest="30"/>
+                <Label Grid.Column="2" Text="{Binding GoalsConceded}" FontSize="30"/>
+                <Button Grid.Column="3" Text="+" Command="{Binding IncrementGoalsConcededCommand}" WidthRequest="30"/>
+            </Grid>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Minute:"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  FontSize="20"/>
+                <Label Text="{Binding Time}" FontSize="50"/>
+                <Button Text="Stop" Command="{Binding StopStopWatchCommand}"/>
+                <Button Text="Start" Command="{Binding StartStopWatchCommand}"/>
+            </StackLayout>
+
+                <Grid HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.75*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Text="Event:" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="20"/>
+                <Picker Grid.Column="1" ItemsSource="{Binding DisplayMatchEvents}" SelectedItem="{Binding MatchEvent}"/>
+                <Label Grid.Column="2" Text="Player:" FontSize="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Picker ItemsSource="{Binding MatchDaySquadNames}" SelectedItem="{Binding PlayerName}" Grid.Column="3" Margin="0, 0, 30, 0"/>
+
+
+            </Grid>
+            <Button Text="Add Match Event" Command="{Binding AddMatchEventToMatchCommand}"/>
+
+            <ListView ItemsSource="{Binding EventsInMatch}">
+                <ListView.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Player" Grid.Column="0" HorizontalTextAlignment="Center" FontSize="20"/>
+                        <Label Text="Event" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="20"/>
+                        <Label Text="Minute" Grid.Column="2" HorizontalTextAlignment="Center" FontSize="20"/>
+                        <Label Text="" Grid.Column="3" HorizontalTextAlignment="Center" FontSize="20"/>
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Player.PlayerName}" Grid.Column="0" FontSize="15"  Margin="10,5,0,0"/>
+                                <Label Text="{Binding EventMatch}" Grid.Column="1" FontSize="15" Margin="10,5,0,0"/>
+                                <Label Text="{Binding Minute}" Grid.Column="2" FontSize="20" Margin="10,5,0,0" HorizontalTextAlignment="Center"/>
+                                <Button Grid.Column="3" Text="Remove" Command="{Binding BindingContext.RemoveMatchEventCommand, Source={x:RelativeSource AncestorType={x:Type local:AddMatchEventsPage}}}" CommandParameter="{Binding .}"/>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="Next" Command="{Binding NavigateAddManOfTheMatchCommand}"/>
+
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
